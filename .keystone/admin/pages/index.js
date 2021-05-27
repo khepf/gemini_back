@@ -42,6 +42,15 @@ export default function Home() {
           Role: _allRolesMeta {
             count
           }
+          BaseballCard: _allBaseballCardsMeta {
+            count
+          }
+          BaseballCardImageOne: _allBaseballCardImageOnesMeta {
+            count
+          }
+          BaseballCardImageTwo: _allBaseballCardImageTwosMeta {
+            count
+          }
         }
       `}
     />

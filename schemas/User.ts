@@ -5,8 +5,10 @@ import { permissions, rules } from '../access';
 export const User = list({
   access: {
     create: () => true,
-    read: rules.canManageUsers,
-    update: rules.canManageUsers,
+    // read: rules.canManageUsers,
+    // update: rules.canManageUsers,
+    read: () => true,
+    update: () => true,
     // only people with the permission can delete themselves!
     // You can't delete yourself
     delete: permissions.canManageUsers,
