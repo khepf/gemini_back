@@ -970,14 +970,6 @@ export type BaseballCardWhereInput = {
   readonly buyDate_not_ends_with_i?: Scalars['String'] | null;
   readonly buyDate_in?: ReadonlyArray<Scalars['String'] | null> | null;
   readonly buyDate_not_in?: ReadonlyArray<Scalars['String'] | null> | null;
-  readonly sellPrice?: Scalars['Int'] | null;
-  readonly sellPrice_not?: Scalars['Int'] | null;
-  readonly sellPrice_lt?: Scalars['Int'] | null;
-  readonly sellPrice_lte?: Scalars['Int'] | null;
-  readonly sellPrice_gt?: Scalars['Int'] | null;
-  readonly sellPrice_gte?: Scalars['Int'] | null;
-  readonly sellPrice_in?: ReadonlyArray<Scalars['Int'] | null> | null;
-  readonly sellPrice_not_in?: ReadonlyArray<Scalars['Int'] | null> | null;
   readonly sellingPrice?: Scalars['Int'] | null;
   readonly sellingPrice_not?: Scalars['Int'] | null;
   readonly sellingPrice_lt?: Scalars['Int'] | null;
@@ -1004,24 +996,32 @@ export type BaseballCardWhereInput = {
   readonly sellingDate_not_ends_with_i?: Scalars['String'] | null;
   readonly sellingDate_in?: ReadonlyArray<Scalars['String'] | null> | null;
   readonly sellingDate_not_in?: ReadonlyArray<Scalars['String'] | null> | null;
-  readonly sellDate?: Scalars['String'] | null;
-  readonly sellDate_not?: Scalars['String'] | null;
-  readonly sellDate_contains?: Scalars['String'] | null;
-  readonly sellDate_not_contains?: Scalars['String'] | null;
-  readonly sellDate_starts_with?: Scalars['String'] | null;
-  readonly sellDate_not_starts_with?: Scalars['String'] | null;
-  readonly sellDate_ends_with?: Scalars['String'] | null;
-  readonly sellDate_not_ends_with?: Scalars['String'] | null;
-  readonly sellDate_i?: Scalars['String'] | null;
-  readonly sellDate_not_i?: Scalars['String'] | null;
-  readonly sellDate_contains_i?: Scalars['String'] | null;
-  readonly sellDate_not_contains_i?: Scalars['String'] | null;
-  readonly sellDate_starts_with_i?: Scalars['String'] | null;
-  readonly sellDate_not_starts_with_i?: Scalars['String'] | null;
-  readonly sellDate_ends_with_i?: Scalars['String'] | null;
-  readonly sellDate_not_ends_with_i?: Scalars['String'] | null;
-  readonly sellDate_in?: ReadonlyArray<Scalars['String'] | null> | null;
-  readonly sellDate_not_in?: ReadonlyArray<Scalars['String'] | null> | null;
+  readonly soldPrice?: Scalars['Int'] | null;
+  readonly soldPrice_not?: Scalars['Int'] | null;
+  readonly soldPrice_lt?: Scalars['Int'] | null;
+  readonly soldPrice_lte?: Scalars['Int'] | null;
+  readonly soldPrice_gt?: Scalars['Int'] | null;
+  readonly soldPrice_gte?: Scalars['Int'] | null;
+  readonly soldPrice_in?: ReadonlyArray<Scalars['Int'] | null> | null;
+  readonly soldPrice_not_in?: ReadonlyArray<Scalars['Int'] | null> | null;
+  readonly soldDate?: Scalars['String'] | null;
+  readonly soldDate_not?: Scalars['String'] | null;
+  readonly soldDate_contains?: Scalars['String'] | null;
+  readonly soldDate_not_contains?: Scalars['String'] | null;
+  readonly soldDate_starts_with?: Scalars['String'] | null;
+  readonly soldDate_not_starts_with?: Scalars['String'] | null;
+  readonly soldDate_ends_with?: Scalars['String'] | null;
+  readonly soldDate_not_ends_with?: Scalars['String'] | null;
+  readonly soldDate_i?: Scalars['String'] | null;
+  readonly soldDate_not_i?: Scalars['String'] | null;
+  readonly soldDate_contains_i?: Scalars['String'] | null;
+  readonly soldDate_not_contains_i?: Scalars['String'] | null;
+  readonly soldDate_starts_with_i?: Scalars['String'] | null;
+  readonly soldDate_not_starts_with_i?: Scalars['String'] | null;
+  readonly soldDate_ends_with_i?: Scalars['String'] | null;
+  readonly soldDate_not_ends_with_i?: Scalars['String'] | null;
+  readonly soldDate_in?: ReadonlyArray<Scalars['String'] | null> | null;
+  readonly soldDate_not_in?: ReadonlyArray<Scalars['String'] | null> | null;
   readonly image1?: BaseballCardImageOneWhereInput | null;
   readonly image1_is_null?: Scalars['Boolean'] | null;
   readonly image2?: BaseballCardImageTwoWhereInput | null;
@@ -1053,14 +1053,14 @@ export type SortBaseballCardsBy =
   | 'buyPrice_DESC'
   | 'buyDate_ASC'
   | 'buyDate_DESC'
-  | 'sellPrice_ASC'
-  | 'sellPrice_DESC'
   | 'sellingPrice_ASC'
   | 'sellingPrice_DESC'
   | 'sellingDate_ASC'
   | 'sellingDate_DESC'
-  | 'sellDate_ASC'
-  | 'sellDate_DESC'
+  | 'soldPrice_ASC'
+  | 'soldPrice_DESC'
+  | 'soldDate_ASC'
+  | 'soldDate_DESC'
   | 'image1_ASC'
   | 'image1_DESC'
   | 'image2_ASC'
@@ -1076,10 +1076,10 @@ export type BaseballCardUpdateInput = {
   readonly condition?: Scalars['String'] | null;
   readonly buyPrice?: Scalars['Int'] | null;
   readonly buyDate?: Scalars['String'] | null;
-  readonly sellPrice?: Scalars['Int'] | null;
   readonly sellingPrice?: Scalars['Int'] | null;
   readonly sellingDate?: Scalars['String'] | null;
-  readonly sellDate?: Scalars['String'] | null;
+  readonly soldPrice?: Scalars['Int'] | null;
+  readonly soldDate?: Scalars['String'] | null;
   readonly image1?: BaseballCardImageOneRelateToOneInput | null;
   readonly image2?: BaseballCardImageTwoRelateToOneInput | null;
 };
@@ -1099,10 +1099,10 @@ export type BaseballCardCreateInput = {
   readonly condition?: Scalars['String'] | null;
   readonly buyPrice?: Scalars['Int'] | null;
   readonly buyDate?: Scalars['String'] | null;
-  readonly sellPrice?: Scalars['Int'] | null;
   readonly sellingPrice?: Scalars['Int'] | null;
   readonly sellingDate?: Scalars['String'] | null;
-  readonly sellDate?: Scalars['String'] | null;
+  readonly soldPrice?: Scalars['Int'] | null;
+  readonly soldDate?: Scalars['String'] | null;
   readonly image1?: BaseballCardImageOneRelateToOneInput | null;
   readonly image2?: BaseballCardImageTwoRelateToOneInput | null;
 };
@@ -1599,10 +1599,10 @@ export type BaseballCardListTypeInfo = {
     | 'condition'
     | 'buyPrice'
     | 'buyDate'
-    | 'sellPrice'
     | 'sellingPrice'
     | 'sellingDate'
-    | 'sellDate'
+    | 'soldPrice'
+    | 'soldDate'
     | 'image1'
     | 'image2';
   backing: {
@@ -1616,10 +1616,10 @@ export type BaseballCardListTypeInfo = {
     readonly condition?: string | null;
     readonly buyPrice?: number | null;
     readonly buyDate?: string | null;
-    readonly sellPrice?: number | null;
     readonly sellingPrice?: number | null;
     readonly sellingDate?: string | null;
-    readonly sellDate?: string | null;
+    readonly soldPrice?: number | null;
+    readonly soldDate?: string | null;
     readonly image1?: string | null;
     readonly image2?: string | null;
   };

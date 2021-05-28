@@ -956,10 +956,10 @@ type BaseballCard {
   condition: String
   buyPrice: Int
   buyDate: String
-  sellPrice: Int
   sellingPrice: Int
   sellingDate: String
-  sellDate: String
+  soldPrice: Int
+  soldDate: String
   image1: BaseballCardImageOne
   image2: BaseballCardImageTwo
 }
@@ -1103,14 +1103,6 @@ input BaseballCardWhereInput {
   buyDate_not_ends_with_i: String
   buyDate_in: [String]
   buyDate_not_in: [String]
-  sellPrice: Int
-  sellPrice_not: Int
-  sellPrice_lt: Int
-  sellPrice_lte: Int
-  sellPrice_gt: Int
-  sellPrice_gte: Int
-  sellPrice_in: [Int]
-  sellPrice_not_in: [Int]
   sellingPrice: Int
   sellingPrice_not: Int
   sellingPrice_lt: Int
@@ -1137,24 +1129,32 @@ input BaseballCardWhereInput {
   sellingDate_not_ends_with_i: String
   sellingDate_in: [String]
   sellingDate_not_in: [String]
-  sellDate: String
-  sellDate_not: String
-  sellDate_contains: String
-  sellDate_not_contains: String
-  sellDate_starts_with: String
-  sellDate_not_starts_with: String
-  sellDate_ends_with: String
-  sellDate_not_ends_with: String
-  sellDate_i: String
-  sellDate_not_i: String
-  sellDate_contains_i: String
-  sellDate_not_contains_i: String
-  sellDate_starts_with_i: String
-  sellDate_not_starts_with_i: String
-  sellDate_ends_with_i: String
-  sellDate_not_ends_with_i: String
-  sellDate_in: [String]
-  sellDate_not_in: [String]
+  soldPrice: Int
+  soldPrice_not: Int
+  soldPrice_lt: Int
+  soldPrice_lte: Int
+  soldPrice_gt: Int
+  soldPrice_gte: Int
+  soldPrice_in: [Int]
+  soldPrice_not_in: [Int]
+  soldDate: String
+  soldDate_not: String
+  soldDate_contains: String
+  soldDate_not_contains: String
+  soldDate_starts_with: String
+  soldDate_not_starts_with: String
+  soldDate_ends_with: String
+  soldDate_not_ends_with: String
+  soldDate_i: String
+  soldDate_not_i: String
+  soldDate_contains_i: String
+  soldDate_not_contains_i: String
+  soldDate_starts_with_i: String
+  soldDate_not_starts_with_i: String
+  soldDate_ends_with_i: String
+  soldDate_not_ends_with_i: String
+  soldDate_in: [String]
+  soldDate_not_in: [String]
   image1: BaseballCardImageOneWhereInput
   image1_is_null: Boolean
   image2: BaseballCardImageTwoWhereInput
@@ -1186,14 +1186,14 @@ enum SortBaseballCardsBy {
   buyPrice_DESC
   buyDate_ASC
   buyDate_DESC
-  sellPrice_ASC
-  sellPrice_DESC
   sellingPrice_ASC
   sellingPrice_DESC
   sellingDate_ASC
   sellingDate_DESC
-  sellDate_ASC
-  sellDate_DESC
+  soldPrice_ASC
+  soldPrice_DESC
+  soldDate_ASC
+  soldDate_DESC
   image1_ASC
   image1_DESC
   image2_ASC
@@ -1210,10 +1210,10 @@ input BaseballCardUpdateInput {
   condition: String
   buyPrice: Int
   buyDate: String
-  sellPrice: Int
   sellingPrice: Int
   sellingDate: String
-  sellDate: String
+  soldPrice: Int
+  soldDate: String
   image1: BaseballCardImageOneRelateToOneInput
   image2: BaseballCardImageTwoRelateToOneInput
 }
@@ -1233,10 +1233,10 @@ input BaseballCardCreateInput {
   condition: String
   buyPrice: Int
   buyDate: String
-  sellPrice: Int
   sellingPrice: Int
   sellingDate: String
-  sellDate: String
+  soldPrice: Int
+  soldDate: String
   image1: BaseballCardImageOneRelateToOneInput
   image2: BaseballCardImageTwoRelateToOneInput
 }

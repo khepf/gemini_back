@@ -35,10 +35,11 @@ export const BaseballCard = list({
           condition: text(),
           buyPrice: integer(),
           buyDate: text(),
-          sellPrice: integer(),
           sellingPrice: integer(),
           sellingDate: text(),
-          sellDate: text(),
+          soldPrice: integer(),
+          soldDate: text(),
+          
           image1: relationship({
             ref: 'BaseballCardImageOne.product',
             ui: {
