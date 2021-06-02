@@ -58,6 +58,12 @@ export const BaseballCard = list({
                inlineEdit: { fields: ['image', 'altText'] },
             },
             }),
+            user: relationship({
+              ref: 'User.baseballcards',
+              defaultValue: ({ context }) => ({
+                connect: { id: context.session.itemId },
+              }),
+            }),
         },
 
 });

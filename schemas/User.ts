@@ -42,5 +42,9 @@ export const User = list({
       ref: 'Product.user',
       many: true,
     }),
+    baseballcards: relationship({
+      ref: 'BaseballCard.user',
+      many: true
+    })
   },
 });

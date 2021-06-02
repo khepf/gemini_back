@@ -26,6 +26,13 @@ input ProductRelateToManyInput {
   disconnectAll: Boolean
 }
 
+input BaseballCardRelateToManyInput {
+  create: [BaseballCardCreateInput]
+  connect: [BaseballCardWhereUniqueInput]
+  disconnect: [BaseballCardWhereUniqueInput]
+  disconnectAll: Boolean
+}
+
 """ A keystone list """
 type User {
   id: ID!
@@ -39,6 +46,8 @@ type User {
   role: Role
   products(where: ProductWhereInput, search: String, sortBy: [SortProductsBy!], orderBy: String, first: Int, skip: Int): [Product!]!
   _productsMeta(where: ProductWhereInput, search: String, sortBy: [SortProductsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  baseballcards(where: BaseballCardWhereInput, search: String, sortBy: [SortBaseballCardsBy!], orderBy: String, first: Int, skip: Int): [BaseballCard!]!
+  _baseballcardsMeta(where: BaseballCardWhereInput, search: String, sortBy: [SortBaseballCardsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
   passwordResetToken_is_set: Boolean
   passwordResetIssuedAt: String
   passwordResetRedeemedAt: String
@@ -120,6 +129,15 @@ input UserWhereInput {
 
   """ condition must be false for all nodes """
   products_none: ProductWhereInput
+
+  """ condition must be true for all nodes """
+  baseballcards_every: BaseballCardWhereInput
+
+  """ condition must be true for at least 1 node """
+  baseballcards_some: BaseballCardWhereInput
+
+  """ condition must be false for all nodes """
+  baseballcards_none: BaseballCardWhereInput
   passwordResetToken_is_set: Boolean
   passwordResetIssuedAt: String
   passwordResetIssuedAt_not: String
@@ -175,6 +193,8 @@ enum SortUsersBy {
   role_DESC
   products_ASC
   products_DESC
+  baseballcards_ASC
+  baseballcards_DESC
   passwordResetIssuedAt_ASC
   passwordResetIssuedAt_DESC
   passwordResetRedeemedAt_ASC
@@ -193,6 +213,7 @@ input UserUpdateInput {
   orders: OrderRelateToManyInput
   role: RoleRelateToOneInput
   products: ProductRelateToManyInput
+  baseballcards: BaseballCardRelateToManyInput
   passwordResetToken: String
   passwordResetIssuedAt: String
   passwordResetRedeemedAt: String
@@ -214,6 +235,7 @@ input UserCreateInput {
   orders: OrderRelateToManyInput
   role: RoleRelateToOneInput
   products: ProductRelateToManyInput
+  baseballcards: BaseballCardRelateToManyInput
   passwordResetToken: String
   passwordResetIssuedAt: String
   passwordResetRedeemedAt: String
@@ -817,6 +839,7 @@ type Role {
   id: ID!
   name: String
   canManageProducts: Boolean
+  canManageBaseballCards: Boolean
   canSeeOtherUsers: Boolean
   canManageUsers: Boolean
   canManageRoles: Boolean
@@ -853,6 +876,8 @@ input RoleWhereInput {
   name_not_in: [String]
   canManageProducts: Boolean
   canManageProducts_not: Boolean
+  canManageBaseballCards: Boolean
+  canManageBaseballCards_not: Boolean
   canSeeOtherUsers: Boolean
   canSeeOtherUsers_not: Boolean
   canManageUsers: Boolean
@@ -885,6 +910,8 @@ enum SortRolesBy {
   name_DESC
   canManageProducts_ASC
   canManageProducts_DESC
+  canManageBaseballCards_ASC
+  canManageBaseballCards_DESC
   canSeeOtherUsers_ASC
   canSeeOtherUsers_DESC
   canManageUsers_ASC
@@ -902,6 +929,7 @@ enum SortRolesBy {
 input RoleUpdateInput {
   name: String
   canManageProducts: Boolean
+  canManageBaseballCards: Boolean
   canSeeOtherUsers: Boolean
   canManageUsers: Boolean
   canManageRoles: Boolean
@@ -918,6 +946,7 @@ input RolesUpdateInput {
 input RoleCreateInput {
   name: String
   canManageProducts: Boolean
+  canManageBaseballCards: Boolean
   canSeeOtherUsers: Boolean
   canManageUsers: Boolean
   canManageRoles: Boolean
@@ -962,6 +991,7 @@ type BaseballCard {
   soldDate: String
   image1: BaseballCardImageOne
   image2: BaseballCardImageTwo
+  user: User
 }
 
 input BaseballCardWhereInput {
@@ -1159,6 +1189,8 @@ input BaseballCardWhereInput {
   image1_is_null: Boolean
   image2: BaseballCardImageTwoWhereInput
   image2_is_null: Boolean
+  user: UserWhereInput
+  user_is_null: Boolean
 }
 
 input BaseballCardWhereUniqueInput {
@@ -1198,6 +1230,8 @@ enum SortBaseballCardsBy {
   image1_DESC
   image2_ASC
   image2_DESC
+  user_ASC
+  user_DESC
 }
 
 input BaseballCardUpdateInput {
@@ -1216,6 +1250,7 @@ input BaseballCardUpdateInput {
   soldDate: String
   image1: BaseballCardImageOneRelateToOneInput
   image2: BaseballCardImageTwoRelateToOneInput
+  user: UserRelateToOneInput
 }
 
 input BaseballCardsUpdateInput {
@@ -1239,6 +1274,7 @@ input BaseballCardCreateInput {
   soldDate: String
   image1: BaseballCardImageOneRelateToOneInput
   image2: BaseballCardImageTwoRelateToOneInput
+  user: UserRelateToOneInput
 }
 
 input BaseballCardsCreateInput {

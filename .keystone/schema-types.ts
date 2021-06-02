@@ -35,6 +35,13 @@ export type ProductRelateToManyInput = {
   readonly disconnectAll?: Scalars['Boolean'] | null;
 };
 
+export type BaseballCardRelateToManyInput = {
+  readonly create?: ReadonlyArray<BaseballCardCreateInput | null> | null;
+  readonly connect?: ReadonlyArray<BaseballCardWhereUniqueInput | null> | null;
+  readonly disconnect?: ReadonlyArray<BaseballCardWhereUniqueInput | null> | null;
+  readonly disconnectAll?: Scalars['Boolean'] | null;
+};
+
 export type UserWhereInput = {
   readonly AND?: ReadonlyArray<UserWhereInput | null> | null;
   readonly OR?: ReadonlyArray<UserWhereInput | null> | null;
@@ -90,6 +97,9 @@ export type UserWhereInput = {
   readonly products_every?: ProductWhereInput | null;
   readonly products_some?: ProductWhereInput | null;
   readonly products_none?: ProductWhereInput | null;
+  readonly baseballcards_every?: BaseballCardWhereInput | null;
+  readonly baseballcards_some?: BaseballCardWhereInput | null;
+  readonly baseballcards_none?: BaseballCardWhereInput | null;
   readonly passwordResetToken_is_set?: Scalars['Boolean'] | null;
   readonly passwordResetIssuedAt?: Scalars['String'] | null;
   readonly passwordResetIssuedAt_not?: Scalars['String'] | null;
@@ -161,6 +171,8 @@ export type SortUsersBy =
   | 'role_DESC'
   | 'products_ASC'
   | 'products_DESC'
+  | 'baseballcards_ASC'
+  | 'baseballcards_DESC'
   | 'passwordResetIssuedAt_ASC'
   | 'passwordResetIssuedAt_DESC'
   | 'passwordResetRedeemedAt_ASC'
@@ -178,6 +190,7 @@ export type UserUpdateInput = {
   readonly orders?: OrderRelateToManyInput | null;
   readonly role?: RoleRelateToOneInput | null;
   readonly products?: ProductRelateToManyInput | null;
+  readonly baseballcards?: BaseballCardRelateToManyInput | null;
   readonly passwordResetToken?: Scalars['String'] | null;
   readonly passwordResetIssuedAt?: Scalars['String'] | null;
   readonly passwordResetRedeemedAt?: Scalars['String'] | null;
@@ -199,6 +212,7 @@ export type UserCreateInput = {
   readonly orders?: OrderRelateToManyInput | null;
   readonly role?: RoleRelateToOneInput | null;
   readonly products?: ProductRelateToManyInput | null;
+  readonly baseballcards?: BaseballCardRelateToManyInput | null;
   readonly passwordResetToken?: Scalars['String'] | null;
   readonly passwordResetIssuedAt?: Scalars['String'] | null;
   readonly passwordResetRedeemedAt?: Scalars['String'] | null;
@@ -747,6 +761,8 @@ export type RoleWhereInput = {
   readonly name_not_in?: ReadonlyArray<Scalars['String'] | null> | null;
   readonly canManageProducts?: Scalars['Boolean'] | null;
   readonly canManageProducts_not?: Scalars['Boolean'] | null;
+  readonly canManageBaseballCards?: Scalars['Boolean'] | null;
+  readonly canManageBaseballCards_not?: Scalars['Boolean'] | null;
   readonly canSeeOtherUsers?: Scalars['Boolean'] | null;
   readonly canSeeOtherUsers_not?: Scalars['Boolean'] | null;
   readonly canManageUsers?: Scalars['Boolean'] | null;
@@ -773,6 +789,8 @@ export type SortRolesBy =
   | 'name_DESC'
   | 'canManageProducts_ASC'
   | 'canManageProducts_DESC'
+  | 'canManageBaseballCards_ASC'
+  | 'canManageBaseballCards_DESC'
   | 'canSeeOtherUsers_ASC'
   | 'canSeeOtherUsers_DESC'
   | 'canManageUsers_ASC'
@@ -789,6 +807,7 @@ export type SortRolesBy =
 export type RoleUpdateInput = {
   readonly name?: Scalars['String'] | null;
   readonly canManageProducts?: Scalars['Boolean'] | null;
+  readonly canManageBaseballCards?: Scalars['Boolean'] | null;
   readonly canSeeOtherUsers?: Scalars['Boolean'] | null;
   readonly canManageUsers?: Scalars['Boolean'] | null;
   readonly canManageRoles?: Scalars['Boolean'] | null;
@@ -805,6 +824,7 @@ export type RolesUpdateInput = {
 export type RoleCreateInput = {
   readonly name?: Scalars['String'] | null;
   readonly canManageProducts?: Scalars['Boolean'] | null;
+  readonly canManageBaseballCards?: Scalars['Boolean'] | null;
   readonly canSeeOtherUsers?: Scalars['Boolean'] | null;
   readonly canManageUsers?: Scalars['Boolean'] | null;
   readonly canManageRoles?: Scalars['Boolean'] | null;
@@ -1026,6 +1046,8 @@ export type BaseballCardWhereInput = {
   readonly image1_is_null?: Scalars['Boolean'] | null;
   readonly image2?: BaseballCardImageTwoWhereInput | null;
   readonly image2_is_null?: Scalars['Boolean'] | null;
+  readonly user?: UserWhereInput | null;
+  readonly user_is_null?: Scalars['Boolean'] | null;
 };
 
 export type BaseballCardWhereUniqueInput = {
@@ -1064,7 +1086,9 @@ export type SortBaseballCardsBy =
   | 'image1_ASC'
   | 'image1_DESC'
   | 'image2_ASC'
-  | 'image2_DESC';
+  | 'image2_DESC'
+  | 'user_ASC'
+  | 'user_DESC';
 
 export type BaseballCardUpdateInput = {
   readonly firstName?: Scalars['String'] | null;
@@ -1082,6 +1106,7 @@ export type BaseballCardUpdateInput = {
   readonly soldDate?: Scalars['String'] | null;
   readonly image1?: BaseballCardImageOneRelateToOneInput | null;
   readonly image2?: BaseballCardImageTwoRelateToOneInput | null;
+  readonly user?: UserRelateToOneInput | null;
 };
 
 export type BaseballCardsUpdateInput = {
@@ -1105,6 +1130,7 @@ export type BaseballCardCreateInput = {
   readonly soldDate?: Scalars['String'] | null;
   readonly image1?: BaseballCardImageOneRelateToOneInput | null;
   readonly image2?: BaseballCardImageTwoRelateToOneInput | null;
+  readonly user?: UserRelateToOneInput | null;
 };
 
 export type BaseballCardsCreateInput = {
@@ -1307,6 +1333,7 @@ export type UserListTypeInfo = {
     | 'orders'
     | 'role'
     | 'products'
+    | 'baseballcards'
     | 'passwordResetToken'
     | 'passwordResetIssuedAt'
     | 'passwordResetRedeemedAt'
@@ -1322,6 +1349,7 @@ export type UserListTypeInfo = {
     readonly orders?: string | null;
     readonly role?: string | null;
     readonly products?: string | null;
+    readonly baseballcards?: string | null;
     readonly passwordResetToken?: string | null;
     readonly passwordResetIssuedAt?: Date | null;
     readonly passwordResetRedeemedAt?: Date | null;
@@ -1544,6 +1572,7 @@ export type RoleListTypeInfo = {
     | 'id'
     | 'name'
     | 'canManageProducts'
+    | 'canManageBaseballCards'
     | 'canSeeOtherUsers'
     | 'canManageUsers'
     | 'canManageRoles'
@@ -1554,6 +1583,7 @@ export type RoleListTypeInfo = {
     readonly id: string;
     readonly name?: string | null;
     readonly canManageProducts?: boolean | null;
+    readonly canManageBaseballCards?: boolean | null;
     readonly canSeeOtherUsers?: boolean | null;
     readonly canManageUsers?: boolean | null;
     readonly canManageRoles?: boolean | null;
@@ -1604,7 +1634,8 @@ export type BaseballCardListTypeInfo = {
     | 'soldPrice'
     | 'soldDate'
     | 'image1'
-    | 'image2';
+    | 'image2'
+    | 'user';
   backing: {
     readonly id: string;
     readonly firstName?: string | null;
@@ -1622,6 +1653,7 @@ export type BaseballCardListTypeInfo = {
     readonly soldDate?: string | null;
     readonly image1?: string | null;
     readonly image2?: string | null;
+    readonly user?: string | null;
   };
   inputs: {
     where: BaseballCardWhereInput;
