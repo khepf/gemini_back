@@ -5,7 +5,7 @@ import { rules, isSignedIn } from '../access';
 export const BaseballCard = list({
     access: {
         create: isSignedIn,
-        read: isSignedIn,
+        read: () => true,
         update: isSignedIn,
         delete: isSignedIn,
       },
