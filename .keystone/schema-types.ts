@@ -1042,6 +1042,26 @@ export type BaseballCardWhereInput = {
   readonly soldDate_not_ends_with_i?: Scalars['String'] | null;
   readonly soldDate_in?: ReadonlyArray<Scalars['String'] | null> | null;
   readonly soldDate_not_in?: ReadonlyArray<Scalars['String'] | null> | null;
+  readonly inventoryStatus?: Scalars['String'] | null;
+  readonly inventoryStatus_not?: Scalars['String'] | null;
+  readonly inventoryStatus_contains?: Scalars['String'] | null;
+  readonly inventoryStatus_not_contains?: Scalars['String'] | null;
+  readonly inventoryStatus_starts_with?: Scalars['String'] | null;
+  readonly inventoryStatus_not_starts_with?: Scalars['String'] | null;
+  readonly inventoryStatus_ends_with?: Scalars['String'] | null;
+  readonly inventoryStatus_not_ends_with?: Scalars['String'] | null;
+  readonly inventoryStatus_i?: Scalars['String'] | null;
+  readonly inventoryStatus_not_i?: Scalars['String'] | null;
+  readonly inventoryStatus_contains_i?: Scalars['String'] | null;
+  readonly inventoryStatus_not_contains_i?: Scalars['String'] | null;
+  readonly inventoryStatus_starts_with_i?: Scalars['String'] | null;
+  readonly inventoryStatus_not_starts_with_i?: Scalars['String'] | null;
+  readonly inventoryStatus_ends_with_i?: Scalars['String'] | null;
+  readonly inventoryStatus_not_ends_with_i?: Scalars['String'] | null;
+  readonly inventoryStatus_in?: ReadonlyArray<Scalars['String'] | null> | null;
+  readonly inventoryStatus_not_in?: ReadonlyArray<
+    Scalars['String'] | null
+  > | null;
   readonly image1?: BaseballCardImageOneWhereInput | null;
   readonly image1_is_null?: Scalars['Boolean'] | null;
   readonly image2?: BaseballCardImageTwoWhereInput | null;
@@ -1083,6 +1103,8 @@ export type SortBaseballCardsBy =
   | 'soldPrice_DESC'
   | 'soldDate_ASC'
   | 'soldDate_DESC'
+  | 'inventoryStatus_ASC'
+  | 'inventoryStatus_DESC'
   | 'image1_ASC'
   | 'image1_DESC'
   | 'image2_ASC'
@@ -1104,6 +1126,7 @@ export type BaseballCardUpdateInput = {
   readonly sellingDate?: Scalars['String'] | null;
   readonly soldPrice?: Scalars['Int'] | null;
   readonly soldDate?: Scalars['String'] | null;
+  readonly inventoryStatus?: Scalars['String'] | null;
   readonly image1?: BaseballCardImageOneRelateToOneInput | null;
   readonly image2?: BaseballCardImageTwoRelateToOneInput | null;
   readonly user?: UserRelateToOneInput | null;
@@ -1128,6 +1151,7 @@ export type BaseballCardCreateInput = {
   readonly sellingDate?: Scalars['String'] | null;
   readonly soldPrice?: Scalars['Int'] | null;
   readonly soldDate?: Scalars['String'] | null;
+  readonly inventoryStatus?: Scalars['String'] | null;
   readonly image1?: BaseballCardImageOneRelateToOneInput | null;
   readonly image2?: BaseballCardImageTwoRelateToOneInput | null;
   readonly user?: UserRelateToOneInput | null;
@@ -1633,6 +1657,7 @@ export type BaseballCardListTypeInfo = {
     | 'sellingDate'
     | 'soldPrice'
     | 'soldDate'
+    | 'inventoryStatus'
     | 'image1'
     | 'image2'
     | 'user';
@@ -1651,6 +1676,7 @@ export type BaseballCardListTypeInfo = {
     readonly sellingDate?: string | null;
     readonly soldPrice?: number | null;
     readonly soldDate?: string | null;
+    readonly inventoryStatus?: string | null;
     readonly image1?: string | null;
     readonly image2?: string | null;
     readonly user?: string | null;

@@ -989,6 +989,7 @@ type BaseballCard {
   sellingDate: String
   soldPrice: Int
   soldDate: String
+  inventoryStatus: String
   image1: BaseballCardImageOne
   image2: BaseballCardImageTwo
   user: User
@@ -1185,6 +1186,24 @@ input BaseballCardWhereInput {
   soldDate_not_ends_with_i: String
   soldDate_in: [String]
   soldDate_not_in: [String]
+  inventoryStatus: String
+  inventoryStatus_not: String
+  inventoryStatus_contains: String
+  inventoryStatus_not_contains: String
+  inventoryStatus_starts_with: String
+  inventoryStatus_not_starts_with: String
+  inventoryStatus_ends_with: String
+  inventoryStatus_not_ends_with: String
+  inventoryStatus_i: String
+  inventoryStatus_not_i: String
+  inventoryStatus_contains_i: String
+  inventoryStatus_not_contains_i: String
+  inventoryStatus_starts_with_i: String
+  inventoryStatus_not_starts_with_i: String
+  inventoryStatus_ends_with_i: String
+  inventoryStatus_not_ends_with_i: String
+  inventoryStatus_in: [String]
+  inventoryStatus_not_in: [String]
   image1: BaseballCardImageOneWhereInput
   image1_is_null: Boolean
   image2: BaseballCardImageTwoWhereInput
@@ -1226,6 +1245,8 @@ enum SortBaseballCardsBy {
   soldPrice_DESC
   soldDate_ASC
   soldDate_DESC
+  inventoryStatus_ASC
+  inventoryStatus_DESC
   image1_ASC
   image1_DESC
   image2_ASC
@@ -1248,6 +1269,7 @@ input BaseballCardUpdateInput {
   sellingDate: String
   soldPrice: Int
   soldDate: String
+  inventoryStatus: String
   image1: BaseballCardImageOneRelateToOneInput
   image2: BaseballCardImageTwoRelateToOneInput
   user: UserRelateToOneInput
@@ -1272,6 +1294,7 @@ input BaseballCardCreateInput {
   sellingDate: String
   soldPrice: Int
   soldDate: String
+  inventoryStatus: String
   image1: BaseballCardImageOneRelateToOneInput
   image2: BaseballCardImageTwoRelateToOneInput
   user: UserRelateToOneInput

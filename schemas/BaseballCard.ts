@@ -39,6 +39,13 @@ export const BaseballCard = list({
           sellingDate: text(),
           soldPrice: integer(),
           soldDate: text(),
+          inventoryStatus: select({
+            options: [
+              { label: 'Not Selling', value: 'notSelling' },
+              { label: 'Selling', value: 'selling' },
+              { label: 'Sold', value: 'sold' },
+            ]
+          }),
           
           image1: relationship({
             ref: 'BaseballCardImageOne.product',

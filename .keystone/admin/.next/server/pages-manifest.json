@@ -2,6 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/baseball-cards": "pages/baseball-cards.js",
-  "/baseball-cards/[id]": "pages/baseball-cards/[id].js"
+  "/baseball-cards/[id]": "pages/baseball-cards/[id].js",
+  "/baseball-cards": "pages/baseball-cards.js"
 }
