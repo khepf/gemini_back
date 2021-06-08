@@ -19,13 +19,6 @@ input RoleRelateToOneInput {
   disconnectAll: Boolean
 }
 
-input ProductRelateToManyInput {
-  create: [ProductCreateInput]
-  connect: [ProductWhereUniqueInput]
-  disconnect: [ProductWhereUniqueInput]
-  disconnectAll: Boolean
-}
-
 input BaseballCardRelateToManyInput {
   create: [BaseballCardCreateInput]
   connect: [BaseballCardWhereUniqueInput]
@@ -44,8 +37,6 @@ type User {
   orders(where: OrderWhereInput, search: String, sortBy: [SortOrdersBy!], orderBy: String, first: Int, skip: Int): [Order!]!
   _ordersMeta(where: OrderWhereInput, search: String, sortBy: [SortOrdersBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
   role: Role
-  products(where: ProductWhereInput, search: String, sortBy: [SortProductsBy!], orderBy: String, first: Int, skip: Int): [Product!]!
-  _productsMeta(where: ProductWhereInput, search: String, sortBy: [SortProductsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
   baseballcards(where: BaseballCardWhereInput, search: String, sortBy: [SortBaseballCardsBy!], orderBy: String, first: Int, skip: Int): [BaseballCard!]!
   _baseballcardsMeta(where: BaseballCardWhereInput, search: String, sortBy: [SortBaseballCardsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
   passwordResetToken_is_set: Boolean
@@ -122,15 +113,6 @@ input UserWhereInput {
   role_is_null: Boolean
 
   """ condition must be true for all nodes """
-  products_every: ProductWhereInput
-
-  """ condition must be true for at least 1 node """
-  products_some: ProductWhereInput
-
-  """ condition must be false for all nodes """
-  products_none: ProductWhereInput
-
-  """ condition must be true for all nodes """
   baseballcards_every: BaseballCardWhereInput
 
   """ condition must be true for at least 1 node """
@@ -191,8 +173,6 @@ enum SortUsersBy {
   orders_DESC
   role_ASC
   role_DESC
-  products_ASC
-  products_DESC
   baseballcards_ASC
   baseballcards_DESC
   passwordResetIssuedAt_ASC
@@ -212,7 +192,6 @@ input UserUpdateInput {
   cart: CartItemRelateToManyInput
   orders: OrderRelateToManyInput
   role: RoleRelateToOneInput
-  products: ProductRelateToManyInput
   baseballcards: BaseballCardRelateToManyInput
   passwordResetToken: String
   passwordResetIssuedAt: String
@@ -234,7 +213,6 @@ input UserCreateInput {
   cart: CartItemRelateToManyInput
   orders: OrderRelateToManyInput
   role: RoleRelateToOneInput
-  products: ProductRelateToManyInput
   baseballcards: BaseballCardRelateToManyInput
   passwordResetToken: String
   passwordResetIssuedAt: String
@@ -248,10 +226,10 @@ input UsersCreateInput {
   data: UserCreateInput
 }
 
-input ProductImageRelateToOneInput {
-  create: ProductImageCreateInput
-  connect: ProductImageWhereUniqueInput
-  disconnect: ProductImageWhereUniqueInput
+input BaseballCardRelateToOneInput {
+  create: BaseballCardCreateInput
+  connect: BaseballCardWhereUniqueInput
+  disconnect: BaseballCardWhereUniqueInput
   disconnectAll: Boolean
 }
 
@@ -263,275 +241,10 @@ input UserRelateToOneInput {
 }
 
 """ A keystone list """
-type Product {
-  id: ID!
-  name: String
-  description: String
-  photo: ProductImage
-  status: String
-  price: Int
-  user: User
-}
-
-input ProductWhereInput {
-  AND: [ProductWhereInput]
-  OR: [ProductWhereInput]
-  id: ID
-  id_not: ID
-  id_in: [ID]
-  id_not_in: [ID]
-  name: String
-  name_not: String
-  name_contains: String
-  name_not_contains: String
-  name_starts_with: String
-  name_not_starts_with: String
-  name_ends_with: String
-  name_not_ends_with: String
-  name_i: String
-  name_not_i: String
-  name_contains_i: String
-  name_not_contains_i: String
-  name_starts_with_i: String
-  name_not_starts_with_i: String
-  name_ends_with_i: String
-  name_not_ends_with_i: String
-  name_in: [String]
-  name_not_in: [String]
-  description: String
-  description_not: String
-  description_contains: String
-  description_not_contains: String
-  description_starts_with: String
-  description_not_starts_with: String
-  description_ends_with: String
-  description_not_ends_with: String
-  description_i: String
-  description_not_i: String
-  description_contains_i: String
-  description_not_contains_i: String
-  description_starts_with_i: String
-  description_not_starts_with_i: String
-  description_ends_with_i: String
-  description_not_ends_with_i: String
-  description_in: [String]
-  description_not_in: [String]
-  photo: ProductImageWhereInput
-  photo_is_null: Boolean
-  status: String
-  status_not: String
-  status_contains: String
-  status_not_contains: String
-  status_starts_with: String
-  status_not_starts_with: String
-  status_ends_with: String
-  status_not_ends_with: String
-  status_i: String
-  status_not_i: String
-  status_contains_i: String
-  status_not_contains_i: String
-  status_starts_with_i: String
-  status_not_starts_with_i: String
-  status_ends_with_i: String
-  status_not_ends_with_i: String
-  status_in: [String]
-  status_not_in: [String]
-  price: Int
-  price_not: Int
-  price_lt: Int
-  price_lte: Int
-  price_gt: Int
-  price_gte: Int
-  price_in: [Int]
-  price_not_in: [Int]
-  user: UserWhereInput
-  user_is_null: Boolean
-}
-
-input ProductWhereUniqueInput {
-  id: ID!
-}
-
-enum SortProductsBy {
-  id_ASC
-  id_DESC
-  name_ASC
-  name_DESC
-  description_ASC
-  description_DESC
-  photo_ASC
-  photo_DESC
-  status_ASC
-  status_DESC
-  price_ASC
-  price_DESC
-  user_ASC
-  user_DESC
-}
-
-input ProductUpdateInput {
-  name: String
-  description: String
-  photo: ProductImageRelateToOneInput
-  status: String
-  price: Int
-  user: UserRelateToOneInput
-}
-
-input ProductsUpdateInput {
-  id: ID!
-  data: ProductUpdateInput
-}
-
-input ProductCreateInput {
-  name: String
-  description: String
-  photo: ProductImageRelateToOneInput
-  status: String
-  price: Int
-  user: UserRelateToOneInput
-}
-
-input ProductsCreateInput {
-  data: ProductCreateInput
-}
-
-type CloudinaryImage_File {
-  id: ID
-  path: String
-  filename: String
-  originalFilename: String
-  mimetype: String
-  encoding: String
-  publicUrl: String
-  publicUrlTransformed(transformation: CloudinaryImageFormat): String
-}
-
-"""
-Mirrors the formatting options [Cloudinary provides](https://cloudinary.com/documentation/image_transformation_reference).
-All options are strings as they ultimately end up in a URL.
-"""
-input CloudinaryImageFormat {
-  """ Rewrites the filename to be this pretty string. Do not include `/` or `.` 
-  """
-  prettyName: String
-  width: String
-  height: String
-  crop: String
-  aspect_ratio: String
-  gravity: String
-  zoom: String
-  x: String
-  y: String
-  format: String
-  fetch_format: String
-  quality: String
-  radius: String
-  angle: String
-  effect: String
-  opacity: String
-  border: String
-  background: String
-  overlay: String
-  underlay: String
-  default_image: String
-  delay: String
-  color: String
-  color_space: String
-  dpr: String
-  page: String
-  density: String
-  flags: String
-  transformation: String
-}
-
-input ProductRelateToOneInput {
-  create: ProductCreateInput
-  connect: ProductWhereUniqueInput
-  disconnect: ProductWhereUniqueInput
-  disconnectAll: Boolean
-}
-
-""" A keystone list """
-type ProductImage {
-  id: ID!
-  image: CloudinaryImage_File
-  altText: String
-  product: Product
-}
-
-input ProductImageWhereInput {
-  AND: [ProductImageWhereInput]
-  OR: [ProductImageWhereInput]
-  id: ID
-  id_not: ID
-  id_in: [ID]
-  id_not_in: [ID]
-  image: String
-  image_not: String
-  image_in: [String]
-  image_not_in: [String]
-  altText: String
-  altText_not: String
-  altText_contains: String
-  altText_not_contains: String
-  altText_starts_with: String
-  altText_not_starts_with: String
-  altText_ends_with: String
-  altText_not_ends_with: String
-  altText_i: String
-  altText_not_i: String
-  altText_contains_i: String
-  altText_not_contains_i: String
-  altText_starts_with_i: String
-  altText_not_starts_with_i: String
-  altText_ends_with_i: String
-  altText_not_ends_with_i: String
-  altText_in: [String]
-  altText_not_in: [String]
-  product: ProductWhereInput
-  product_is_null: Boolean
-}
-
-input ProductImageWhereUniqueInput {
-  id: ID!
-}
-
-enum SortProductImagesBy {
-  id_ASC
-  id_DESC
-  altText_ASC
-  altText_DESC
-  product_ASC
-  product_DESC
-}
-
-input ProductImageUpdateInput {
-  image: Upload
-  altText: String
-  product: ProductRelateToOneInput
-}
-
-input ProductImagesUpdateInput {
-  id: ID!
-  data: ProductImageUpdateInput
-}
-
-input ProductImageCreateInput {
-  image: Upload
-  altText: String
-  product: ProductRelateToOneInput
-}
-
-input ProductImagesCreateInput {
-  data: ProductImageCreateInput
-}
-
-""" A keystone list """
 type CartItem {
   id: ID!
   quantity: Int
-  product: Product
+  baseballcard: BaseballCard
   user: User
 }
 
@@ -550,8 +263,8 @@ input CartItemWhereInput {
   quantity_gte: Int
   quantity_in: [Int]
   quantity_not_in: [Int]
-  product: ProductWhereInput
-  product_is_null: Boolean
+  baseballcard: BaseballCardWhereInput
+  baseballcard_is_null: Boolean
   user: UserWhereInput
   user_is_null: Boolean
 }
@@ -565,15 +278,15 @@ enum SortCartItemsBy {
   id_DESC
   quantity_ASC
   quantity_DESC
-  product_ASC
-  product_DESC
+  baseballcard_ASC
+  baseballcard_DESC
   user_ASC
   user_DESC
 }
 
 input CartItemUpdateInput {
   quantity: Int
-  product: ProductRelateToOneInput
+  baseballcard: BaseballCardRelateToOneInput
   user: UserRelateToOneInput
 }
 
@@ -584,12 +297,19 @@ input CartItemsUpdateInput {
 
 input CartItemCreateInput {
   quantity: Int
-  product: ProductRelateToOneInput
+  baseballcard: BaseballCardRelateToOneInput
   user: UserRelateToOneInput
 }
 
 input CartItemsCreateInput {
   data: CartItemCreateInput
+}
+
+input BaseballCardImageOneRelateToOneInput {
+  create: BaseballCardImageOneCreateInput
+  connect: BaseballCardImageOneWhereUniqueInput
+  disconnect: BaseballCardImageOneWhereUniqueInput
+  disconnectAll: Boolean
 }
 
 input OrderRelateToOneInput {
@@ -602,10 +322,10 @@ input OrderRelateToOneInput {
 """ A keystone list """
 type OrderItem {
   id: ID!
-  name: String
-  description: String
-  photo: ProductImage
-  price: Int
+  firstName: String
+  lastName: String
+  image1: BaseballCardImageOne
+  sellingPrice: Int
   quantity: Int
   order: Order
 }
@@ -617,52 +337,52 @@ input OrderItemWhereInput {
   id_not: ID
   id_in: [ID]
   id_not_in: [ID]
-  name: String
-  name_not: String
-  name_contains: String
-  name_not_contains: String
-  name_starts_with: String
-  name_not_starts_with: String
-  name_ends_with: String
-  name_not_ends_with: String
-  name_i: String
-  name_not_i: String
-  name_contains_i: String
-  name_not_contains_i: String
-  name_starts_with_i: String
-  name_not_starts_with_i: String
-  name_ends_with_i: String
-  name_not_ends_with_i: String
-  name_in: [String]
-  name_not_in: [String]
-  description: String
-  description_not: String
-  description_contains: String
-  description_not_contains: String
-  description_starts_with: String
-  description_not_starts_with: String
-  description_ends_with: String
-  description_not_ends_with: String
-  description_i: String
-  description_not_i: String
-  description_contains_i: String
-  description_not_contains_i: String
-  description_starts_with_i: String
-  description_not_starts_with_i: String
-  description_ends_with_i: String
-  description_not_ends_with_i: String
-  description_in: [String]
-  description_not_in: [String]
-  photo: ProductImageWhereInput
-  photo_is_null: Boolean
-  price: Int
-  price_not: Int
-  price_lt: Int
-  price_lte: Int
-  price_gt: Int
-  price_gte: Int
-  price_in: [Int]
-  price_not_in: [Int]
+  firstName: String
+  firstName_not: String
+  firstName_contains: String
+  firstName_not_contains: String
+  firstName_starts_with: String
+  firstName_not_starts_with: String
+  firstName_ends_with: String
+  firstName_not_ends_with: String
+  firstName_i: String
+  firstName_not_i: String
+  firstName_contains_i: String
+  firstName_not_contains_i: String
+  firstName_starts_with_i: String
+  firstName_not_starts_with_i: String
+  firstName_ends_with_i: String
+  firstName_not_ends_with_i: String
+  firstName_in: [String]
+  firstName_not_in: [String]
+  lastName: String
+  lastName_not: String
+  lastName_contains: String
+  lastName_not_contains: String
+  lastName_starts_with: String
+  lastName_not_starts_with: String
+  lastName_ends_with: String
+  lastName_not_ends_with: String
+  lastName_i: String
+  lastName_not_i: String
+  lastName_contains_i: String
+  lastName_not_contains_i: String
+  lastName_starts_with_i: String
+  lastName_not_starts_with_i: String
+  lastName_ends_with_i: String
+  lastName_not_ends_with_i: String
+  lastName_in: [String]
+  lastName_not_in: [String]
+  image1: BaseballCardImageOneWhereInput
+  image1_is_null: Boolean
+  sellingPrice: Int
+  sellingPrice_not: Int
+  sellingPrice_lt: Int
+  sellingPrice_lte: Int
+  sellingPrice_gt: Int
+  sellingPrice_gte: Int
+  sellingPrice_in: [Int]
+  sellingPrice_not_in: [Int]
   quantity: Int
   quantity_not: Int
   quantity_lt: Int
@@ -682,14 +402,14 @@ input OrderItemWhereUniqueInput {
 enum SortOrderItemsBy {
   id_ASC
   id_DESC
-  name_ASC
-  name_DESC
-  description_ASC
-  description_DESC
-  photo_ASC
-  photo_DESC
-  price_ASC
-  price_DESC
+  firstName_ASC
+  firstName_DESC
+  lastName_ASC
+  lastName_DESC
+  image1_ASC
+  image1_DESC
+  sellingPrice_ASC
+  sellingPrice_DESC
   quantity_ASC
   quantity_DESC
   order_ASC
@@ -697,10 +417,10 @@ enum SortOrderItemsBy {
 }
 
 input OrderItemUpdateInput {
-  name: String
-  description: String
-  photo: ProductImageRelateToOneInput
-  price: Int
+  firstName: String
+  lastName: String
+  image1: BaseballCardImageOneRelateToOneInput
+  sellingPrice: Int
   quantity: Int
   order: OrderRelateToOneInput
 }
@@ -711,10 +431,10 @@ input OrderItemsUpdateInput {
 }
 
 input OrderItemCreateInput {
-  name: String
-  description: String
-  photo: ProductImageRelateToOneInput
-  price: Int
+  firstName: String
+  lastName: String
+  image1: BaseballCardImageOneRelateToOneInput
+  sellingPrice: Int
   quantity: Int
   order: OrderRelateToOneInput
 }
@@ -838,7 +558,6 @@ input UserRelateToManyInput {
 type Role {
   id: ID!
   name: String
-  canManageProducts: Boolean
   canManageBaseballCards: Boolean
   canSeeOtherUsers: Boolean
   canManageUsers: Boolean
@@ -874,8 +593,6 @@ input RoleWhereInput {
   name_not_ends_with_i: String
   name_in: [String]
   name_not_in: [String]
-  canManageProducts: Boolean
-  canManageProducts_not: Boolean
   canManageBaseballCards: Boolean
   canManageBaseballCards_not: Boolean
   canSeeOtherUsers: Boolean
@@ -908,8 +625,6 @@ enum SortRolesBy {
   id_DESC
   name_ASC
   name_DESC
-  canManageProducts_ASC
-  canManageProducts_DESC
   canManageBaseballCards_ASC
   canManageBaseballCards_DESC
   canSeeOtherUsers_ASC
@@ -928,7 +643,6 @@ enum SortRolesBy {
 
 input RoleUpdateInput {
   name: String
-  canManageProducts: Boolean
   canManageBaseballCards: Boolean
   canSeeOtherUsers: Boolean
   canManageUsers: Boolean
@@ -945,7 +659,6 @@ input RolesUpdateInput {
 
 input RoleCreateInput {
   name: String
-  canManageProducts: Boolean
   canManageBaseballCards: Boolean
   canSeeOtherUsers: Boolean
   canManageUsers: Boolean
@@ -957,13 +670,6 @@ input RoleCreateInput {
 
 input RolesCreateInput {
   data: RoleCreateInput
-}
-
-input BaseballCardImageOneRelateToOneInput {
-  create: BaseballCardImageOneCreateInput
-  connect: BaseballCardImageOneWhereUniqueInput
-  disconnect: BaseballCardImageOneWhereUniqueInput
-  disconnectAll: Boolean
 }
 
 input BaseballCardImageTwoRelateToOneInput {
@@ -1304,11 +1010,53 @@ input BaseballCardsCreateInput {
   data: BaseballCardCreateInput
 }
 
-input BaseballCardRelateToOneInput {
-  create: BaseballCardCreateInput
-  connect: BaseballCardWhereUniqueInput
-  disconnect: BaseballCardWhereUniqueInput
-  disconnectAll: Boolean
+type CloudinaryImage_File {
+  id: ID
+  path: String
+  filename: String
+  originalFilename: String
+  mimetype: String
+  encoding: String
+  publicUrl: String
+  publicUrlTransformed(transformation: CloudinaryImageFormat): String
+}
+
+"""
+Mirrors the formatting options [Cloudinary provides](https://cloudinary.com/documentation/image_transformation_reference).
+All options are strings as they ultimately end up in a URL.
+"""
+input CloudinaryImageFormat {
+  """ Rewrites the filename to be this pretty string. Do not include `/` or `.` 
+  """
+  prettyName: String
+  width: String
+  height: String
+  crop: String
+  aspect_ratio: String
+  gravity: String
+  zoom: String
+  x: String
+  y: String
+  format: String
+  fetch_format: String
+  quality: String
+  radius: String
+  angle: String
+  effect: String
+  opacity: String
+  border: String
+  background: String
+  overlay: String
+  underlay: String
+  default_image: String
+  delay: String
+  color: String
+  color_space: String
+  dpr: String
+  page: String
+  density: String
+  flags: String
+  transformation: String
 }
 
 """ A keystone list """
@@ -1654,32 +1402,6 @@ type Query {
   """ Retrieve the meta-data for the User list. """
   _UsersMeta: _ListMeta
 
-  """ Search for all Product items which match the where clause. """
-  allProducts(where: ProductWhereInput, search: String, sortBy: [SortProductsBy!], orderBy: String, first: Int, skip: Int): [Product]
-
-  """ Search for the Product item with the matching ID. """
-  Product(where: ProductWhereUniqueInput!): Product
-
-  """ Perform a meta-query on all Product items which match the where clause. 
-  """
-  _allProductsMeta(where: ProductWhereInput, search: String, sortBy: [SortProductsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
-
-  """ Retrieve the meta-data for the Product list. """
-  _ProductsMeta: _ListMeta
-
-  """ Search for all ProductImage items which match the where clause. """
-  allProductImages(where: ProductImageWhereInput, search: String, sortBy: [SortProductImagesBy!], orderBy: String, first: Int, skip: Int): [ProductImage]
-
-  """ Search for the ProductImage item with the matching ID. """
-  ProductImage(where: ProductImageWhereUniqueInput!): ProductImage
-
-  """ Perform a meta-query on all ProductImage items which match the where clause. 
-  """
-  _allProductImagesMeta(where: ProductImageWhereInput, search: String, sortBy: [SortProductImagesBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
-
-  """ Retrieve the meta-data for the ProductImage list. """
-  _ProductImagesMeta: _ListMeta
-
   """ Search for all CartItem items which match the where clause. """
   allCartItems(where: CartItemWhereInput, search: String, sortBy: [SortCartItemsBy!], orderBy: String, first: Int, skip: Int): [CartItem]
 
@@ -1800,42 +1522,6 @@ type Mutation {
 
   """ Delete multiple User items by ID. """
   deleteUsers(ids: [ID!]): [User]
-
-  """ Create a single Product item. """
-  createProduct(data: ProductCreateInput): Product
-
-  """ Create multiple Product items. """
-  createProducts(data: [ProductsCreateInput]): [Product]
-
-  """ Update a single Product item by ID. """
-  updateProduct(id: ID!, data: ProductUpdateInput): Product
-
-  """ Update multiple Product items by ID. """
-  updateProducts(data: [ProductsUpdateInput]): [Product]
-
-  """ Delete a single Product item by ID. """
-  deleteProduct(id: ID!): Product
-
-  """ Delete multiple Product items by ID. """
-  deleteProducts(ids: [ID!]): [Product]
-
-  """ Create a single ProductImage item. """
-  createProductImage(data: ProductImageCreateInput): ProductImage
-
-  """ Create multiple ProductImage items. """
-  createProductImages(data: [ProductImagesCreateInput]): [ProductImage]
-
-  """ Update a single ProductImage item by ID. """
-  updateProductImage(id: ID!, data: ProductImageUpdateInput): ProductImage
-
-  """ Update multiple ProductImage items by ID. """
-  updateProductImages(data: [ProductImagesUpdateInput]): [ProductImage]
-
-  """ Delete a single ProductImage item by ID. """
-  deleteProductImage(id: ID!): ProductImage
-
-  """ Delete multiple ProductImage items by ID. """
-  deleteProductImages(ids: [ID!]): [ProductImage]
 
   """ Create a single CartItem item. """
   createCartItem(data: CartItemCreateInput): CartItem
@@ -1966,7 +1652,7 @@ type Mutation {
   createInitialUser(data: CreateInitialUserInput!): UserAuthenticationWithPasswordSuccess!
   sendUserPasswordResetLink(email: String!): SendUserPasswordResetLinkResult
   redeemUserPasswordResetToken(email: String!, token: String!, password: String!): RedeemUserPasswordResetTokenResult
-  addToCart(productId: ID): CartItem
+  addToCart(baseballcardId: ID): CartItem
   checkout(token: String!): Order
   endSession: Boolean!
 }

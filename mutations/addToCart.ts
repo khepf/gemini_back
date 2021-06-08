@@ -7,7 +7,7 @@ import { CartItemCreateInput } from '../.keystone/schema-types';
 
 async function addToCart(
   root: any,
-  { productId }: { productId: string },
+  { baseballcardId }: { baseballcardId: string },
   context: KeystoneContext
 ): Promise<CartItemCreateInput> {
   console.log('ADDING TO CART!');
@@ -18,7 +18,7 @@ async function addToCart(
   }
   // 2. Query the current users cart
   const allCartItems = await context.lists.CartItem.findMany({
-    where: { user: { id: sesh.itemId }, product: { id: productId } },
+    where: { user: { id: sesh.itemId }, baseballcard: { id: baseballcardId }},
     resolveFields: 'id,quantity'
   });
 
@@ -39,7 +39,7 @@ async function addToCart(
   // 4. if it isnt, create a new cart item!
   return await context.lists.CartItem.createOne({
     data: {
-      product: { connect: { id: productId }},
+      baseballcard: { connect: { id: baseballcardId }},
       user: { connect: { id: sesh.itemId }},
     },
     resolveFields: false,

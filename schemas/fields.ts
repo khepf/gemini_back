@@ -1,10 +1,10 @@
 import { checkbox } from '@keystone-next/fields';
 
 export const permissionFields = {
-  canManageProducts: checkbox({
-    defaultValue: false,
-    label: 'User can Update and delete any product',
-  }),
+  // canManageProducts: checkbox({
+  //   defaultValue: false,
+  //   label: 'User can Update and delete any product',
+  // }),
   canManageBaseballCards: checkbox({
     defaultValue: true,
     label: 'User can update and delete any baseball card'

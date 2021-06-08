@@ -9,8 +9,8 @@ import { Role } from './schemas/Role';
 import { OrderItem } from './schemas/OrderItem';
 import { Order } from './schemas/Order';
 import { CartItem } from './schemas/CartItem';
-import { ProductImage } from './schemas/ProductImage';
-import { Product } from './schemas/Product';
+// import { ProductImage } from './schemas/ProductImage';
+// import { Product } from './schemas/Product';
 import { User } from './schemas/User';
 import { BaseballCard } from './schemas/BaseballCard';
 import { BaseballCardImageOne } from './schemas/BaseballCardImageOne';
@@ -68,8 +68,8 @@ export default withAuth(
     lists: createSchema({
       // Schema items go in here
       User,
-      Product,
-      ProductImage,
+      // Product,
+      // ProductImage,
       CartItem,
       OrderItem,
       Order,

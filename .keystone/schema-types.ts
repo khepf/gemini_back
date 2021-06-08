@@ -28,13 +28,6 @@ export type RoleRelateToOneInput = {
   readonly disconnectAll?: Scalars['Boolean'] | null;
 };
 
-export type ProductRelateToManyInput = {
-  readonly create?: ReadonlyArray<ProductCreateInput | null> | null;
-  readonly connect?: ReadonlyArray<ProductWhereUniqueInput | null> | null;
-  readonly disconnect?: ReadonlyArray<ProductWhereUniqueInput | null> | null;
-  readonly disconnectAll?: Scalars['Boolean'] | null;
-};
-
 export type BaseballCardRelateToManyInput = {
   readonly create?: ReadonlyArray<BaseballCardCreateInput | null> | null;
   readonly connect?: ReadonlyArray<BaseballCardWhereUniqueInput | null> | null;
@@ -94,9 +87,6 @@ export type UserWhereInput = {
   readonly orders_none?: OrderWhereInput | null;
   readonly role?: RoleWhereInput | null;
   readonly role_is_null?: Scalars['Boolean'] | null;
-  readonly products_every?: ProductWhereInput | null;
-  readonly products_some?: ProductWhereInput | null;
-  readonly products_none?: ProductWhereInput | null;
   readonly baseballcards_every?: BaseballCardWhereInput | null;
   readonly baseballcards_some?: BaseballCardWhereInput | null;
   readonly baseballcards_none?: BaseballCardWhereInput | null;
@@ -169,8 +159,6 @@ export type SortUsersBy =
   | 'orders_DESC'
   | 'role_ASC'
   | 'role_DESC'
-  | 'products_ASC'
-  | 'products_DESC'
   | 'baseballcards_ASC'
   | 'baseballcards_DESC'
   | 'passwordResetIssuedAt_ASC'
@@ -189,7 +177,6 @@ export type UserUpdateInput = {
   readonly cart?: CartItemRelateToManyInput | null;
   readonly orders?: OrderRelateToManyInput | null;
   readonly role?: RoleRelateToOneInput | null;
-  readonly products?: ProductRelateToManyInput | null;
   readonly baseballcards?: BaseballCardRelateToManyInput | null;
   readonly passwordResetToken?: Scalars['String'] | null;
   readonly passwordResetIssuedAt?: Scalars['String'] | null;
@@ -211,7 +198,6 @@ export type UserCreateInput = {
   readonly cart?: CartItemRelateToManyInput | null;
   readonly orders?: OrderRelateToManyInput | null;
   readonly role?: RoleRelateToOneInput | null;
-  readonly products?: ProductRelateToManyInput | null;
   readonly baseballcards?: BaseballCardRelateToManyInput | null;
   readonly passwordResetToken?: Scalars['String'] | null;
   readonly passwordResetIssuedAt?: Scalars['String'] | null;
@@ -225,10 +211,10 @@ export type UsersCreateInput = {
   readonly data?: UserCreateInput | null;
 };
 
-export type ProductImageRelateToOneInput = {
-  readonly create?: ProductImageCreateInput | null;
-  readonly connect?: ProductImageWhereUniqueInput | null;
-  readonly disconnect?: ProductImageWhereUniqueInput | null;
+export type BaseballCardRelateToOneInput = {
+  readonly create?: BaseballCardCreateInput | null;
+  readonly connect?: BaseballCardWhereUniqueInput | null;
+  readonly disconnect?: BaseballCardWhereUniqueInput | null;
   readonly disconnectAll?: Scalars['Boolean'] | null;
 };
 
@@ -237,233 +223,6 @@ export type UserRelateToOneInput = {
   readonly connect?: UserWhereUniqueInput | null;
   readonly disconnect?: UserWhereUniqueInput | null;
   readonly disconnectAll?: Scalars['Boolean'] | null;
-};
-
-export type ProductWhereInput = {
-  readonly AND?: ReadonlyArray<ProductWhereInput | null> | null;
-  readonly OR?: ReadonlyArray<ProductWhereInput | null> | null;
-  readonly id?: Scalars['ID'] | null;
-  readonly id_not?: Scalars['ID'] | null;
-  readonly id_in?: ReadonlyArray<Scalars['ID'] | null> | null;
-  readonly id_not_in?: ReadonlyArray<Scalars['ID'] | null> | null;
-  readonly name?: Scalars['String'] | null;
-  readonly name_not?: Scalars['String'] | null;
-  readonly name_contains?: Scalars['String'] | null;
-  readonly name_not_contains?: Scalars['String'] | null;
-  readonly name_starts_with?: Scalars['String'] | null;
-  readonly name_not_starts_with?: Scalars['String'] | null;
-  readonly name_ends_with?: Scalars['String'] | null;
-  readonly name_not_ends_with?: Scalars['String'] | null;
-  readonly name_i?: Scalars['String'] | null;
-  readonly name_not_i?: Scalars['String'] | null;
-  readonly name_contains_i?: Scalars['String'] | null;
-  readonly name_not_contains_i?: Scalars['String'] | null;
-  readonly name_starts_with_i?: Scalars['String'] | null;
-  readonly name_not_starts_with_i?: Scalars['String'] | null;
-  readonly name_ends_with_i?: Scalars['String'] | null;
-  readonly name_not_ends_with_i?: Scalars['String'] | null;
-  readonly name_in?: ReadonlyArray<Scalars['String'] | null> | null;
-  readonly name_not_in?: ReadonlyArray<Scalars['String'] | null> | null;
-  readonly description?: Scalars['String'] | null;
-  readonly description_not?: Scalars['String'] | null;
-  readonly description_contains?: Scalars['String'] | null;
-  readonly description_not_contains?: Scalars['String'] | null;
-  readonly description_starts_with?: Scalars['String'] | null;
-  readonly description_not_starts_with?: Scalars['String'] | null;
-  readonly description_ends_with?: Scalars['String'] | null;
-  readonly description_not_ends_with?: Scalars['String'] | null;
-  readonly description_i?: Scalars['String'] | null;
-  readonly description_not_i?: Scalars['String'] | null;
-  readonly description_contains_i?: Scalars['String'] | null;
-  readonly description_not_contains_i?: Scalars['String'] | null;
-  readonly description_starts_with_i?: Scalars['String'] | null;
-  readonly description_not_starts_with_i?: Scalars['String'] | null;
-  readonly description_ends_with_i?: Scalars['String'] | null;
-  readonly description_not_ends_with_i?: Scalars['String'] | null;
-  readonly description_in?: ReadonlyArray<Scalars['String'] | null> | null;
-  readonly description_not_in?: ReadonlyArray<Scalars['String'] | null> | null;
-  readonly photo?: ProductImageWhereInput | null;
-  readonly photo_is_null?: Scalars['Boolean'] | null;
-  readonly status?: Scalars['String'] | null;
-  readonly status_not?: Scalars['String'] | null;
-  readonly status_contains?: Scalars['String'] | null;
-  readonly status_not_contains?: Scalars['String'] | null;
-  readonly status_starts_with?: Scalars['String'] | null;
-  readonly status_not_starts_with?: Scalars['String'] | null;
-  readonly status_ends_with?: Scalars['String'] | null;
-  readonly status_not_ends_with?: Scalars['String'] | null;
-  readonly status_i?: Scalars['String'] | null;
-  readonly status_not_i?: Scalars['String'] | null;
-  readonly status_contains_i?: Scalars['String'] | null;
-  readonly status_not_contains_i?: Scalars['String'] | null;
-  readonly status_starts_with_i?: Scalars['String'] | null;
-  readonly status_not_starts_with_i?: Scalars['String'] | null;
-  readonly status_ends_with_i?: Scalars['String'] | null;
-  readonly status_not_ends_with_i?: Scalars['String'] | null;
-  readonly status_in?: ReadonlyArray<Scalars['String'] | null> | null;
-  readonly status_not_in?: ReadonlyArray<Scalars['String'] | null> | null;
-  readonly price?: Scalars['Int'] | null;
-  readonly price_not?: Scalars['Int'] | null;
-  readonly price_lt?: Scalars['Int'] | null;
-  readonly price_lte?: Scalars['Int'] | null;
-  readonly price_gt?: Scalars['Int'] | null;
-  readonly price_gte?: Scalars['Int'] | null;
-  readonly price_in?: ReadonlyArray<Scalars['Int'] | null> | null;
-  readonly price_not_in?: ReadonlyArray<Scalars['Int'] | null> | null;
-  readonly user?: UserWhereInput | null;
-  readonly user_is_null?: Scalars['Boolean'] | null;
-};
-
-export type ProductWhereUniqueInput = {
-  readonly id: Scalars['ID'];
-};
-
-export type SortProductsBy =
-  | 'id_ASC'
-  | 'id_DESC'
-  | 'name_ASC'
-  | 'name_DESC'
-  | 'description_ASC'
-  | 'description_DESC'
-  | 'photo_ASC'
-  | 'photo_DESC'
-  | 'status_ASC'
-  | 'status_DESC'
-  | 'price_ASC'
-  | 'price_DESC'
-  | 'user_ASC'
-  | 'user_DESC';
-
-export type ProductUpdateInput = {
-  readonly name?: Scalars['String'] | null;
-  readonly description?: Scalars['String'] | null;
-  readonly photo?: ProductImageRelateToOneInput | null;
-  readonly status?: Scalars['String'] | null;
-  readonly price?: Scalars['Int'] | null;
-  readonly user?: UserRelateToOneInput | null;
-};
-
-export type ProductsUpdateInput = {
-  readonly id: Scalars['ID'];
-  readonly data?: ProductUpdateInput | null;
-};
-
-export type ProductCreateInput = {
-  readonly name?: Scalars['String'] | null;
-  readonly description?: Scalars['String'] | null;
-  readonly photo?: ProductImageRelateToOneInput | null;
-  readonly status?: Scalars['String'] | null;
-  readonly price?: Scalars['Int'] | null;
-  readonly user?: UserRelateToOneInput | null;
-};
-
-export type ProductsCreateInput = {
-  readonly data?: ProductCreateInput | null;
-};
-
-export type CloudinaryImageFormat = {
-  readonly prettyName?: Scalars['String'] | null;
-  readonly width?: Scalars['String'] | null;
-  readonly height?: Scalars['String'] | null;
-  readonly crop?: Scalars['String'] | null;
-  readonly aspect_ratio?: Scalars['String'] | null;
-  readonly gravity?: Scalars['String'] | null;
-  readonly zoom?: Scalars['String'] | null;
-  readonly x?: Scalars['String'] | null;
-  readonly y?: Scalars['String'] | null;
-  readonly format?: Scalars['String'] | null;
-  readonly fetch_format?: Scalars['String'] | null;
-  readonly quality?: Scalars['String'] | null;
-  readonly radius?: Scalars['String'] | null;
-  readonly angle?: Scalars['String'] | null;
-  readonly effect?: Scalars['String'] | null;
-  readonly opacity?: Scalars['String'] | null;
-  readonly border?: Scalars['String'] | null;
-  readonly background?: Scalars['String'] | null;
-  readonly overlay?: Scalars['String'] | null;
-  readonly underlay?: Scalars['String'] | null;
-  readonly default_image?: Scalars['String'] | null;
-  readonly delay?: Scalars['String'] | null;
-  readonly color?: Scalars['String'] | null;
-  readonly color_space?: Scalars['String'] | null;
-  readonly dpr?: Scalars['String'] | null;
-  readonly page?: Scalars['String'] | null;
-  readonly density?: Scalars['String'] | null;
-  readonly flags?: Scalars['String'] | null;
-  readonly transformation?: Scalars['String'] | null;
-};
-
-export type ProductRelateToOneInput = {
-  readonly create?: ProductCreateInput | null;
-  readonly connect?: ProductWhereUniqueInput | null;
-  readonly disconnect?: ProductWhereUniqueInput | null;
-  readonly disconnectAll?: Scalars['Boolean'] | null;
-};
-
-export type ProductImageWhereInput = {
-  readonly AND?: ReadonlyArray<ProductImageWhereInput | null> | null;
-  readonly OR?: ReadonlyArray<ProductImageWhereInput | null> | null;
-  readonly id?: Scalars['ID'] | null;
-  readonly id_not?: Scalars['ID'] | null;
-  readonly id_in?: ReadonlyArray<Scalars['ID'] | null> | null;
-  readonly id_not_in?: ReadonlyArray<Scalars['ID'] | null> | null;
-  readonly image?: Scalars['String'] | null;
-  readonly image_not?: Scalars['String'] | null;
-  readonly image_in?: ReadonlyArray<Scalars['String'] | null> | null;
-  readonly image_not_in?: ReadonlyArray<Scalars['String'] | null> | null;
-  readonly altText?: Scalars['String'] | null;
-  readonly altText_not?: Scalars['String'] | null;
-  readonly altText_contains?: Scalars['String'] | null;
-  readonly altText_not_contains?: Scalars['String'] | null;
-  readonly altText_starts_with?: Scalars['String'] | null;
-  readonly altText_not_starts_with?: Scalars['String'] | null;
-  readonly altText_ends_with?: Scalars['String'] | null;
-  readonly altText_not_ends_with?: Scalars['String'] | null;
-  readonly altText_i?: Scalars['String'] | null;
-  readonly altText_not_i?: Scalars['String'] | null;
-  readonly altText_contains_i?: Scalars['String'] | null;
-  readonly altText_not_contains_i?: Scalars['String'] | null;
-  readonly altText_starts_with_i?: Scalars['String'] | null;
-  readonly altText_not_starts_with_i?: Scalars['String'] | null;
-  readonly altText_ends_with_i?: Scalars['String'] | null;
-  readonly altText_not_ends_with_i?: Scalars['String'] | null;
-  readonly altText_in?: ReadonlyArray<Scalars['String'] | null> | null;
-  readonly altText_not_in?: ReadonlyArray<Scalars['String'] | null> | null;
-  readonly product?: ProductWhereInput | null;
-  readonly product_is_null?: Scalars['Boolean'] | null;
-};
-
-export type ProductImageWhereUniqueInput = {
-  readonly id: Scalars['ID'];
-};
-
-export type SortProductImagesBy =
-  | 'id_ASC'
-  | 'id_DESC'
-  | 'altText_ASC'
-  | 'altText_DESC'
-  | 'product_ASC'
-  | 'product_DESC';
-
-export type ProductImageUpdateInput = {
-  readonly image?: any | null;
-  readonly altText?: Scalars['String'] | null;
-  readonly product?: ProductRelateToOneInput | null;
-};
-
-export type ProductImagesUpdateInput = {
-  readonly id: Scalars['ID'];
-  readonly data?: ProductImageUpdateInput | null;
-};
-
-export type ProductImageCreateInput = {
-  readonly image?: any | null;
-  readonly altText?: Scalars['String'] | null;
-  readonly product?: ProductRelateToOneInput | null;
-};
-
-export type ProductImagesCreateInput = {
-  readonly data?: ProductImageCreateInput | null;
 };
 
 export type CartItemWhereInput = {
@@ -481,8 +240,8 @@ export type CartItemWhereInput = {
   readonly quantity_gte?: Scalars['Int'] | null;
   readonly quantity_in?: ReadonlyArray<Scalars['Int'] | null> | null;
   readonly quantity_not_in?: ReadonlyArray<Scalars['Int'] | null> | null;
-  readonly product?: ProductWhereInput | null;
-  readonly product_is_null?: Scalars['Boolean'] | null;
+  readonly baseballcard?: BaseballCardWhereInput | null;
+  readonly baseballcard_is_null?: Scalars['Boolean'] | null;
   readonly user?: UserWhereInput | null;
   readonly user_is_null?: Scalars['Boolean'] | null;
 };
@@ -496,14 +255,14 @@ export type SortCartItemsBy =
   | 'id_DESC'
   | 'quantity_ASC'
   | 'quantity_DESC'
-  | 'product_ASC'
-  | 'product_DESC'
+  | 'baseballcard_ASC'
+  | 'baseballcard_DESC'
   | 'user_ASC'
   | 'user_DESC';
 
 export type CartItemUpdateInput = {
   readonly quantity?: Scalars['Int'] | null;
-  readonly product?: ProductRelateToOneInput | null;
+  readonly baseballcard?: BaseballCardRelateToOneInput | null;
   readonly user?: UserRelateToOneInput | null;
 };
 
@@ -514,12 +273,19 @@ export type CartItemsUpdateInput = {
 
 export type CartItemCreateInput = {
   readonly quantity?: Scalars['Int'] | null;
-  readonly product?: ProductRelateToOneInput | null;
+  readonly baseballcard?: BaseballCardRelateToOneInput | null;
   readonly user?: UserRelateToOneInput | null;
 };
 
 export type CartItemsCreateInput = {
   readonly data?: CartItemCreateInput | null;
+};
+
+export type BaseballCardImageOneRelateToOneInput = {
+  readonly create?: BaseballCardImageOneCreateInput | null;
+  readonly connect?: BaseballCardImageOneWhereUniqueInput | null;
+  readonly disconnect?: BaseballCardImageOneWhereUniqueInput | null;
+  readonly disconnectAll?: Scalars['Boolean'] | null;
 };
 
 export type OrderRelateToOneInput = {
@@ -536,52 +302,52 @@ export type OrderItemWhereInput = {
   readonly id_not?: Scalars['ID'] | null;
   readonly id_in?: ReadonlyArray<Scalars['ID'] | null> | null;
   readonly id_not_in?: ReadonlyArray<Scalars['ID'] | null> | null;
-  readonly name?: Scalars['String'] | null;
-  readonly name_not?: Scalars['String'] | null;
-  readonly name_contains?: Scalars['String'] | null;
-  readonly name_not_contains?: Scalars['String'] | null;
-  readonly name_starts_with?: Scalars['String'] | null;
-  readonly name_not_starts_with?: Scalars['String'] | null;
-  readonly name_ends_with?: Scalars['String'] | null;
-  readonly name_not_ends_with?: Scalars['String'] | null;
-  readonly name_i?: Scalars['String'] | null;
-  readonly name_not_i?: Scalars['String'] | null;
-  readonly name_contains_i?: Scalars['String'] | null;
-  readonly name_not_contains_i?: Scalars['String'] | null;
-  readonly name_starts_with_i?: Scalars['String'] | null;
-  readonly name_not_starts_with_i?: Scalars['String'] | null;
-  readonly name_ends_with_i?: Scalars['String'] | null;
-  readonly name_not_ends_with_i?: Scalars['String'] | null;
-  readonly name_in?: ReadonlyArray<Scalars['String'] | null> | null;
-  readonly name_not_in?: ReadonlyArray<Scalars['String'] | null> | null;
-  readonly description?: Scalars['String'] | null;
-  readonly description_not?: Scalars['String'] | null;
-  readonly description_contains?: Scalars['String'] | null;
-  readonly description_not_contains?: Scalars['String'] | null;
-  readonly description_starts_with?: Scalars['String'] | null;
-  readonly description_not_starts_with?: Scalars['String'] | null;
-  readonly description_ends_with?: Scalars['String'] | null;
-  readonly description_not_ends_with?: Scalars['String'] | null;
-  readonly description_i?: Scalars['String'] | null;
-  readonly description_not_i?: Scalars['String'] | null;
-  readonly description_contains_i?: Scalars['String'] | null;
-  readonly description_not_contains_i?: Scalars['String'] | null;
-  readonly description_starts_with_i?: Scalars['String'] | null;
-  readonly description_not_starts_with_i?: Scalars['String'] | null;
-  readonly description_ends_with_i?: Scalars['String'] | null;
-  readonly description_not_ends_with_i?: Scalars['String'] | null;
-  readonly description_in?: ReadonlyArray<Scalars['String'] | null> | null;
-  readonly description_not_in?: ReadonlyArray<Scalars['String'] | null> | null;
-  readonly photo?: ProductImageWhereInput | null;
-  readonly photo_is_null?: Scalars['Boolean'] | null;
-  readonly price?: Scalars['Int'] | null;
-  readonly price_not?: Scalars['Int'] | null;
-  readonly price_lt?: Scalars['Int'] | null;
-  readonly price_lte?: Scalars['Int'] | null;
-  readonly price_gt?: Scalars['Int'] | null;
-  readonly price_gte?: Scalars['Int'] | null;
-  readonly price_in?: ReadonlyArray<Scalars['Int'] | null> | null;
-  readonly price_not_in?: ReadonlyArray<Scalars['Int'] | null> | null;
+  readonly firstName?: Scalars['String'] | null;
+  readonly firstName_not?: Scalars['String'] | null;
+  readonly firstName_contains?: Scalars['String'] | null;
+  readonly firstName_not_contains?: Scalars['String'] | null;
+  readonly firstName_starts_with?: Scalars['String'] | null;
+  readonly firstName_not_starts_with?: Scalars['String'] | null;
+  readonly firstName_ends_with?: Scalars['String'] | null;
+  readonly firstName_not_ends_with?: Scalars['String'] | null;
+  readonly firstName_i?: Scalars['String'] | null;
+  readonly firstName_not_i?: Scalars['String'] | null;
+  readonly firstName_contains_i?: Scalars['String'] | null;
+  readonly firstName_not_contains_i?: Scalars['String'] | null;
+  readonly firstName_starts_with_i?: Scalars['String'] | null;
+  readonly firstName_not_starts_with_i?: Scalars['String'] | null;
+  readonly firstName_ends_with_i?: Scalars['String'] | null;
+  readonly firstName_not_ends_with_i?: Scalars['String'] | null;
+  readonly firstName_in?: ReadonlyArray<Scalars['String'] | null> | null;
+  readonly firstName_not_in?: ReadonlyArray<Scalars['String'] | null> | null;
+  readonly lastName?: Scalars['String'] | null;
+  readonly lastName_not?: Scalars['String'] | null;
+  readonly lastName_contains?: Scalars['String'] | null;
+  readonly lastName_not_contains?: Scalars['String'] | null;
+  readonly lastName_starts_with?: Scalars['String'] | null;
+  readonly lastName_not_starts_with?: Scalars['String'] | null;
+  readonly lastName_ends_with?: Scalars['String'] | null;
+  readonly lastName_not_ends_with?: Scalars['String'] | null;
+  readonly lastName_i?: Scalars['String'] | null;
+  readonly lastName_not_i?: Scalars['String'] | null;
+  readonly lastName_contains_i?: Scalars['String'] | null;
+  readonly lastName_not_contains_i?: Scalars['String'] | null;
+  readonly lastName_starts_with_i?: Scalars['String'] | null;
+  readonly lastName_not_starts_with_i?: Scalars['String'] | null;
+  readonly lastName_ends_with_i?: Scalars['String'] | null;
+  readonly lastName_not_ends_with_i?: Scalars['String'] | null;
+  readonly lastName_in?: ReadonlyArray<Scalars['String'] | null> | null;
+  readonly lastName_not_in?: ReadonlyArray<Scalars['String'] | null> | null;
+  readonly image1?: BaseballCardImageOneWhereInput | null;
+  readonly image1_is_null?: Scalars['Boolean'] | null;
+  readonly sellingPrice?: Scalars['Int'] | null;
+  readonly sellingPrice_not?: Scalars['Int'] | null;
+  readonly sellingPrice_lt?: Scalars['Int'] | null;
+  readonly sellingPrice_lte?: Scalars['Int'] | null;
+  readonly sellingPrice_gt?: Scalars['Int'] | null;
+  readonly sellingPrice_gte?: Scalars['Int'] | null;
+  readonly sellingPrice_in?: ReadonlyArray<Scalars['Int'] | null> | null;
+  readonly sellingPrice_not_in?: ReadonlyArray<Scalars['Int'] | null> | null;
   readonly quantity?: Scalars['Int'] | null;
   readonly quantity_not?: Scalars['Int'] | null;
   readonly quantity_lt?: Scalars['Int'] | null;
@@ -601,24 +367,24 @@ export type OrderItemWhereUniqueInput = {
 export type SortOrderItemsBy =
   | 'id_ASC'
   | 'id_DESC'
-  | 'name_ASC'
-  | 'name_DESC'
-  | 'description_ASC'
-  | 'description_DESC'
-  | 'photo_ASC'
-  | 'photo_DESC'
-  | 'price_ASC'
-  | 'price_DESC'
+  | 'firstName_ASC'
+  | 'firstName_DESC'
+  | 'lastName_ASC'
+  | 'lastName_DESC'
+  | 'image1_ASC'
+  | 'image1_DESC'
+  | 'sellingPrice_ASC'
+  | 'sellingPrice_DESC'
   | 'quantity_ASC'
   | 'quantity_DESC'
   | 'order_ASC'
   | 'order_DESC';
 
 export type OrderItemUpdateInput = {
-  readonly name?: Scalars['String'] | null;
-  readonly description?: Scalars['String'] | null;
-  readonly photo?: ProductImageRelateToOneInput | null;
-  readonly price?: Scalars['Int'] | null;
+  readonly firstName?: Scalars['String'] | null;
+  readonly lastName?: Scalars['String'] | null;
+  readonly image1?: BaseballCardImageOneRelateToOneInput | null;
+  readonly sellingPrice?: Scalars['Int'] | null;
   readonly quantity?: Scalars['Int'] | null;
   readonly order?: OrderRelateToOneInput | null;
 };
@@ -629,10 +395,10 @@ export type OrderItemsUpdateInput = {
 };
 
 export type OrderItemCreateInput = {
-  readonly name?: Scalars['String'] | null;
-  readonly description?: Scalars['String'] | null;
-  readonly photo?: ProductImageRelateToOneInput | null;
-  readonly price?: Scalars['Int'] | null;
+  readonly firstName?: Scalars['String'] | null;
+  readonly lastName?: Scalars['String'] | null;
+  readonly image1?: BaseballCardImageOneRelateToOneInput | null;
+  readonly sellingPrice?: Scalars['Int'] | null;
   readonly quantity?: Scalars['Int'] | null;
   readonly order?: OrderRelateToOneInput | null;
 };
@@ -759,8 +525,6 @@ export type RoleWhereInput = {
   readonly name_not_ends_with_i?: Scalars['String'] | null;
   readonly name_in?: ReadonlyArray<Scalars['String'] | null> | null;
   readonly name_not_in?: ReadonlyArray<Scalars['String'] | null> | null;
-  readonly canManageProducts?: Scalars['Boolean'] | null;
-  readonly canManageProducts_not?: Scalars['Boolean'] | null;
   readonly canManageBaseballCards?: Scalars['Boolean'] | null;
   readonly canManageBaseballCards_not?: Scalars['Boolean'] | null;
   readonly canSeeOtherUsers?: Scalars['Boolean'] | null;
@@ -787,8 +551,6 @@ export type SortRolesBy =
   | 'id_DESC'
   | 'name_ASC'
   | 'name_DESC'
-  | 'canManageProducts_ASC'
-  | 'canManageProducts_DESC'
   | 'canManageBaseballCards_ASC'
   | 'canManageBaseballCards_DESC'
   | 'canSeeOtherUsers_ASC'
@@ -806,7 +568,6 @@ export type SortRolesBy =
 
 export type RoleUpdateInput = {
   readonly name?: Scalars['String'] | null;
-  readonly canManageProducts?: Scalars['Boolean'] | null;
   readonly canManageBaseballCards?: Scalars['Boolean'] | null;
   readonly canSeeOtherUsers?: Scalars['Boolean'] | null;
   readonly canManageUsers?: Scalars['Boolean'] | null;
@@ -823,7 +584,6 @@ export type RolesUpdateInput = {
 
 export type RoleCreateInput = {
   readonly name?: Scalars['String'] | null;
-  readonly canManageProducts?: Scalars['Boolean'] | null;
   readonly canManageBaseballCards?: Scalars['Boolean'] | null;
   readonly canSeeOtherUsers?: Scalars['Boolean'] | null;
   readonly canManageUsers?: Scalars['Boolean'] | null;
@@ -835,13 +595,6 @@ export type RoleCreateInput = {
 
 export type RolesCreateInput = {
   readonly data?: RoleCreateInput | null;
-};
-
-export type BaseballCardImageOneRelateToOneInput = {
-  readonly create?: BaseballCardImageOneCreateInput | null;
-  readonly connect?: BaseballCardImageOneWhereUniqueInput | null;
-  readonly disconnect?: BaseballCardImageOneWhereUniqueInput | null;
-  readonly disconnectAll?: Scalars['Boolean'] | null;
 };
 
 export type BaseballCardImageTwoRelateToOneInput = {
@@ -1161,11 +914,36 @@ export type BaseballCardsCreateInput = {
   readonly data?: BaseballCardCreateInput | null;
 };
 
-export type BaseballCardRelateToOneInput = {
-  readonly create?: BaseballCardCreateInput | null;
-  readonly connect?: BaseballCardWhereUniqueInput | null;
-  readonly disconnect?: BaseballCardWhereUniqueInput | null;
-  readonly disconnectAll?: Scalars['Boolean'] | null;
+export type CloudinaryImageFormat = {
+  readonly prettyName?: Scalars['String'] | null;
+  readonly width?: Scalars['String'] | null;
+  readonly height?: Scalars['String'] | null;
+  readonly crop?: Scalars['String'] | null;
+  readonly aspect_ratio?: Scalars['String'] | null;
+  readonly gravity?: Scalars['String'] | null;
+  readonly zoom?: Scalars['String'] | null;
+  readonly x?: Scalars['String'] | null;
+  readonly y?: Scalars['String'] | null;
+  readonly format?: Scalars['String'] | null;
+  readonly fetch_format?: Scalars['String'] | null;
+  readonly quality?: Scalars['String'] | null;
+  readonly radius?: Scalars['String'] | null;
+  readonly angle?: Scalars['String'] | null;
+  readonly effect?: Scalars['String'] | null;
+  readonly opacity?: Scalars['String'] | null;
+  readonly border?: Scalars['String'] | null;
+  readonly background?: Scalars['String'] | null;
+  readonly overlay?: Scalars['String'] | null;
+  readonly underlay?: Scalars['String'] | null;
+  readonly default_image?: Scalars['String'] | null;
+  readonly delay?: Scalars['String'] | null;
+  readonly color?: Scalars['String'] | null;
+  readonly color_space?: Scalars['String'] | null;
+  readonly dpr?: Scalars['String'] | null;
+  readonly page?: Scalars['String'] | null;
+  readonly density?: Scalars['String'] | null;
+  readonly flags?: Scalars['String'] | null;
+  readonly transformation?: Scalars['String'] | null;
 };
 
 export type BaseballCardImageOneWhereInput = {
@@ -1356,7 +1134,6 @@ export type UserListTypeInfo = {
     | 'cart'
     | 'orders'
     | 'role'
-    | 'products'
     | 'baseballcards'
     | 'passwordResetToken'
     | 'passwordResetIssuedAt'
@@ -1372,7 +1149,6 @@ export type UserListTypeInfo = {
     readonly cart?: string | null;
     readonly orders?: string | null;
     readonly role?: string | null;
-    readonly products?: string | null;
     readonly baseballcards?: string | null;
     readonly passwordResetToken?: string | null;
     readonly passwordResetIssuedAt?: Date | null;
@@ -1406,84 +1182,13 @@ export type UserListFn = (
   UserListTypeInfo['fields']
 >;
 
-export type ProductListTypeInfo = {
-  key: 'Product';
-  fields: 'id' | 'name' | 'description' | 'photo' | 'status' | 'price' | 'user';
-  backing: {
-    readonly id: string;
-    readonly name?: string | null;
-    readonly description?: string | null;
-    readonly photo?: string | null;
-    readonly status?: string | null;
-    readonly price?: number | null;
-    readonly user?: string | null;
-  };
-  inputs: {
-    where: ProductWhereInput;
-    create: ProductCreateInput;
-    update: ProductUpdateInput;
-  };
-  args: {
-    listQuery: {
-      readonly where?: ProductWhereInput | null;
-      readonly sortBy?: ReadonlyArray<SortProductsBy> | null;
-      readonly first?: Scalars['Int'] | null;
-      readonly skip?: Scalars['Int'] | null;
-    };
-  };
-};
-
-export type ProductListFn = (
-  listConfig: import('@keystone-next/keystone/schema').ListConfig<
-    ProductListTypeInfo,
-    ProductListTypeInfo['fields']
-  >
-) => import('@keystone-next/keystone/schema').ListConfig<
-  ProductListTypeInfo,
-  ProductListTypeInfo['fields']
->;
-
-export type ProductImageListTypeInfo = {
-  key: 'ProductImage';
-  fields: 'id' | 'image' | 'altText' | 'product';
-  backing: {
-    readonly id: string;
-    readonly image?: any;
-    readonly altText?: string | null;
-    readonly product?: string | null;
-  };
-  inputs: {
-    where: ProductImageWhereInput;
-    create: ProductImageCreateInput;
-    update: ProductImageUpdateInput;
-  };
-  args: {
-    listQuery: {
-      readonly where?: ProductImageWhereInput | null;
-      readonly sortBy?: ReadonlyArray<SortProductImagesBy> | null;
-      readonly first?: Scalars['Int'] | null;
-      readonly skip?: Scalars['Int'] | null;
-    };
-  };
-};
-
-export type ProductImageListFn = (
-  listConfig: import('@keystone-next/keystone/schema').ListConfig<
-    ProductImageListTypeInfo,
-    ProductImageListTypeInfo['fields']
-  >
-) => import('@keystone-next/keystone/schema').ListConfig<
-  ProductImageListTypeInfo,
-  ProductImageListTypeInfo['fields']
->;
-
 export type CartItemListTypeInfo = {
   key: 'CartItem';
-  fields: 'id' | 'quantity' | 'product' | 'user';
+  fields: 'id' | 'quantity' | 'baseballcard' | 'user';
   backing: {
     readonly id: string;
     readonly quantity?: number | null;
-    readonly product?: string | null;
+    readonly baseballcard?: string | null;
     readonly user?: string | null;
   };
   inputs: {
@@ -1515,18 +1220,18 @@ export type OrderItemListTypeInfo = {
   key: 'OrderItem';
   fields:
     | 'id'
-    | 'name'
-    | 'description'
-    | 'photo'
-    | 'price'
+    | 'firstName'
+    | 'lastName'
+    | 'image1'
+    | 'sellingPrice'
     | 'quantity'
     | 'order';
   backing: {
     readonly id: string;
-    readonly name?: string | null;
-    readonly description?: string | null;
-    readonly photo?: string | null;
-    readonly price?: number | null;
+    readonly firstName?: string | null;
+    readonly lastName?: string | null;
+    readonly image1?: string | null;
+    readonly sellingPrice?: number | null;
     readonly quantity?: number | null;
     readonly order?: string | null;
   };
@@ -1595,7 +1300,6 @@ export type RoleListTypeInfo = {
   fields:
     | 'id'
     | 'name'
-    | 'canManageProducts'
     | 'canManageBaseballCards'
     | 'canSeeOtherUsers'
     | 'canManageUsers'
@@ -1606,7 +1310,6 @@ export type RoleListTypeInfo = {
   backing: {
     readonly id: string;
     readonly name?: string | null;
-    readonly canManageProducts?: boolean | null;
     readonly canManageBaseballCards?: boolean | null;
     readonly canSeeOtherUsers?: boolean | null;
     readonly canManageUsers?: boolean | null;
@@ -1776,8 +1479,6 @@ export type BaseballCardImageTwoListFn = (
 
 export type KeystoneListsTypeInfo = {
   readonly User: UserListTypeInfo;
-  readonly Product: ProductListTypeInfo;
-  readonly ProductImage: ProductImageListTypeInfo;
   readonly CartItem: CartItemListTypeInfo;
   readonly OrderItem: OrderItemListTypeInfo;
   readonly Order: OrderListTypeInfo;

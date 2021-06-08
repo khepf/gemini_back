@@ -7,17 +7,13 @@ export const OrderItem = list({
     create: isSignedIn,
     read: rules.canManageOrderItems,
     update: () => false,
-    delete: () => false,
+    delete: () => true,
   },
   fields: {
-    name: text({ isRequired: true }),
-    description: text({
-      ui: {
-        displayMode: 'textarea',
-      },
-    }),
-    photo: relationship({
-      ref: 'ProductImage',
+    firstName: text({ isRequired: true }),
+    lastName: text({ isRequired: true }),
+    image1: relationship({
+      ref: 'BaseballCardImageOne',
       ui: {
         displayMode: 'cards',
         cardFields: ['image', 'altText'],
@@ -25,7 +21,7 @@ export const OrderItem = list({
         inlineEdit: { fields: ['image', 'altText'] },
       },
     }),
-    price: integer(),
+    sellingPrice: integer(),
     quantity: integer(),
     order: relationship({ ref: 'Order.items' }),
   },

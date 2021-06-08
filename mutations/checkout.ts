@@ -36,12 +36,12 @@ async function checkout(
       cart {
         id
         quantity
-        product {
-          name
-          price
-          description
+        baseballcard {
+          firstName
+          lastName
+          sellingPrice
           id
-          photo {
+          image1 {
             id
             image {
               id
@@ -54,9 +54,9 @@ async function checkout(
   });
   console.dir(user, { depth: null })
   // 2. calc the total price for their order
-  const cartItems = user.cart.filter(cartItem => cartItem.product);
+  const cartItems = user.cart.filter(cartItem => cartItem.baseballcard);
   const amount = cartItems.reduce(function(tally: number, cartItem: CartItemCreateInput) {
-    return tally + cartItem.quantity * cartItem.product.price;
+    return tally + cartItem.quantity * cartItem.baseballcard.sellingPrice;
   }, 0);
   console.log(amount);
   // 3. create the charge with the stripe library
@@ -73,11 +73,11 @@ async function checkout(
   // 4. Convert the cartItems to OrderItems
   const orderItems = cartItems.map(cartItem => {
     const orderItem = {
-      name: cartItem.product.name,
-      description: cartItem.product.description,
-      price: cartItem.product.price,
+      firstName: cartItem.baseballcard.firstName,
+      lastName: cartItem.baseballcard.lastName,
+      sellingPrice: cartItem.baseballcard.sellingPrice,
       quantity: cartItem.quantity,
-      photo: { connect: { id: cartItem.product.photo.id }},
+      image1: { connect: { id: cartItem.baseballcard.image1.id }},
     }
     return orderItem;
   })

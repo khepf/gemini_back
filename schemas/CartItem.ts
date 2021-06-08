@@ -11,7 +11,8 @@ export const CartItem = list({
   },
   ui: {
     listView: {
-      initialColumns: ['product', 'quantity', 'user'],
+      // removed product
+      initialColumns: ['baseballcard', 'quantity', 'user'],
     },
   },
   fields: {
@@ -20,7 +21,8 @@ export const CartItem = list({
       defaultValue: 1,
       isRequired: true,
     }),
-    product: relationship({ ref: 'Product' }),
+    // product: relationship({ ref: 'Product' }),
+    baseballcard: relationship({ ref: 'BaseballCard'}),
     user: relationship({ ref: 'User.cart' }),
   },
 });

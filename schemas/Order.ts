@@ -14,7 +14,7 @@ export const Order = list({
     create: isSignedIn,
     read: rules.canOrder,
     update: () => false,
-    delete: () => false,
+    delete: () => true,
   },
   fields: {
     label: virtual({
