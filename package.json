@@ -5,6 +5,8 @@
   "author": "Wes Bos",
   "license": "MIT",
   "scripts": {
+    "start": "keystone-next start",
+    "build": "keystone-next build",
     "dev": "keystone-next",
     "seed-data": "keystone-next --seed-data"
   },
